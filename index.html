@@ -166,11 +166,59 @@
         top: 0;
         left: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         z-index: 1000;
-        box-shadow: var(--shadow-light);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         transition: var(--transition);
+        animation: liquidFlow 6s ease-in-out infinite;
+      }
+
+      @keyframes liquidFlow {
+        0%,
+        100% {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05)
+          );
+        }
+        50% {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.1)
+          );
+        }
+      }
+
+      .navbar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: liquidShimmer 4s ease-in-out infinite;
+      }
+
+      @keyframes liquidShimmer {
+        0% {
+          left: -100%;
+        }
+        50% {
+          left: 100%;
+        }
+        100% {
+          left: 100%;
+        }
       }
 
       .nav-container {
@@ -1154,6 +1202,553 @@
       }
 
       /* ========================================
+   Services Section - Redesigned
+======================================== */
+      .services {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          var(--bg-white) 0%,
+          var(--bg-light) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .services::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 169, 98, 0.03) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        margin-top: 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .service-card {
+        background: var(--bg-white);
+        padding: 35px 20px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: var(--shadow-light);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+      }
+
+      .service-card:hover {
+        transform: translateY(-12px);
+        box-shadow: var(--shadow-heavy);
+        border-color: transparent;
+      }
+
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .service-card::after {
+        content: "";
+        position: absolute;
+        bottom: -50px;
+        right: -50px;
+        width: 100px;
+        height: 100px;
+        background: rgba(201, 169, 98, 0.05);
+        border-radius: 50%;
+        transition: all 0.5s ease;
+        z-index: 0;
+      }
+
+      .service-card:hover::after {
+        transform: scale(3);
+        opacity: 0;
+      }
+
+      .service-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--secondary-color), #d4b76a);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 10px 20px rgba(201, 169, 98, 0.2);
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        border-radius: 12px;
+        background: var(--primary-color);
+      }
+
+      .service-icon i {
+        font-size: 32px;
+        color: var(--bg-white);
+        transition: all 0.4s ease;
+      }
+
+      .service-card:hover .service-icon i {
+        transform: rotate(-5deg) scale(1.1);
+      }
+
+      .service-card h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
+        transition: var(--transition);
+        letter-spacing: 0.5px;
+      }
+
+      .service-card:hover h3 {
+        color: var(--secondary-color);
+      }
+
+      .service-card p {
+        font-size: 13px;
+        color: var(--text-light);
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+        margin-top: 8px;
+        opacity: 0.8;
+      }
+
+      /* ========================================
+   Social Responsibilities Section - Redesigned
+======================================== */
+      .social-responsibilities {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-responsibilities::before {
+        content: "";
+        position: absolute;
+        bottom: -20%;
+        left: -10%;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 169, 98, 0.05) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        margin-top: 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .social-card {
+        background: var(--bg-white);
+        padding: 30px 20px;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+        cursor: pointer;
+      }
+
+      /* Role-based gradient backgrounds */
+      .social-card.founder {
+        background: linear-gradient(145deg, #1a2a3a, var(--primary-color));
+        border: none;
+        transform: translateY(0);
+      }
+
+      .social-card.founder .social-role-badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--bg-white);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .social-card.founder h3,
+      .social-card.founder p {
+        color: var(--bg-white);
+      }
+
+      .social-card.founder:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .social-card.president {
+        background: linear-gradient(145deg, #2c3e4e, #1e2b38);
+        border: none;
+      }
+
+      .social-card.president .social-role-badge {
+        background: rgba(201, 169, 98, 0.2);
+        color: var(--secondary-color);
+        border: 1px solid rgba(201, 169, 98, 0.3);
+      }
+
+      .social-card.president h3,
+      .social-card.president p {
+        color: var(--bg-white);
+      }
+
+      .social-card.president:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .social-card.vice-president {
+        background: linear-gradient(145deg, var(--bg-white), var(--bg-light));
+      }
+
+      .social-card.vice-president .social-role-badge {
+        background: rgba(201, 169, 98, 0.1);
+        color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+      }
+
+      .social-card.patron {
+        border-left: 4px solid var(--secondary-color);
+      }
+
+      .social-card.member {
+        background: var(--bg-light);
+      }
+
+      /* Floating effect */
+      .social-card {
+        animation: floatCard 3s ease-in-out infinite;
+        animation-delay: calc(var(--i, 0) * 0.2s);
+      }
+
+      @keyframes floatCard {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .social-role-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        margin-bottom: 15px;
+        transition: var(--transition);
+      }
+
+      .social-card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .social-card p {
+        font-size: 13px;
+        color: var(--text-light);
+        font-weight: 500;
+      }
+
+      .social-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 169, 98, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        transition: all 0.5s ease;
+      }
+
+      .social-card:hover::before {
+        transform: scale(2);
+        opacity: 0;
+      }
+
+      /* ========================================
+   Offices Section - Redesigned
+======================================== */
+      .offices {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          var(--bg-white) 0%,
+          var(--bg-light) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offices::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        right: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 169, 98, 0.04) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .offices-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .office-card {
+        background: var(--bg-white);
+        padding: 40px 30px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+        cursor: pointer;
+      }
+
+      /* Different styles for each office type */
+      .office-card.sales {
+        border-top: 4px solid var(--secondary-color);
+        background: linear-gradient(
+          145deg,
+          var(--bg-white),
+          rgba(201, 169, 98, 0.02)
+        );
+      }
+
+      .office-card.corporate {
+        border-top: 4px solid var(--primary-color);
+        background: linear-gradient(145deg, var(--bg-white), var(--bg-light));
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .office-card.site {
+        border-top: 4px solid var(--accent-color);
+        background: linear-gradient(
+          145deg,
+          var(--bg-white),
+          rgba(44, 62, 80, 0.02)
+        );
+      }
+
+      .office-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .office-card.corporate:hover {
+        transform: translateY(-20px) scale(1.02);
+      }
+
+      .office-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--bg-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+      }
+
+      .office-card:hover .office-icon {
+        background: var(--secondary-color);
+        transform: rotate(360deg);
+        border-color: var(--secondary-color);
+      }
+
+      .office-icon i {
+        font-size: 24px;
+        color: var(--secondary-color);
+        transition: var(--transition);
+      }
+
+      .office-card:hover .office-icon i {
+        color: var(--bg-white);
+      }
+
+      .office-card h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-family: var(--font-heading);
+        position: relative;
+        display: inline-block;
+      }
+
+      .office-card h3::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--secondary-color);
+        transition: var(--transition);
+      }
+
+      .office-card:hover h3::after {
+        width: 100%;
+      }
+
+      .office-address {
+        font-size: 14px;
+        color: var(--text-light);
+        line-height: 1.8;
+        margin-top: 20px;
+        position: relative;
+        padding-left: 20px;
+        border-left: 2px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .office-card:hover .office-address {
+        border-left-color: var(--secondary-color);
+        color: var(--text-color);
+      }
+
+      /* Location indicator animation */
+      .office-card::after {
+        content: "📍";
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+        opacity: 0.1;
+        transition: all 0.5s ease;
+      }
+
+      .office-card:hover::after {
+        opacity: 0.3;
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .social-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .offices-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .services-grid,
+        .social-grid,
+        .offices-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .office-card.corporate {
+          transform: translateY(0);
+        }
+
+        .office-card.corporate:hover {
+          transform: translateY(-15px) scale(1.02);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .services-grid,
+        .social-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .offices-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .office-card {
+          padding: 30px 20px;
+        }
+      }
+
+      /* ========================================
          Timeline Section - Your Design
       ======================================== */
       .timeline {
@@ -1730,19 +2325,57 @@
       <div class="hero-bg-shape"></div>
       <div class="hero-container">
         <div class="hero-content">
-          <span class="hero-badge">Building with Purpose</span>
-          <h1 class="hero-title">I'm Puneet <span>Aggarwal</span></h1>
+          <span class="hero-badge">Visionary | Leader | Social Worker</span>
+          <h1 class="hero-title">Dr. Puneet <span>Aggarwal</span></h1>
           <p class="hero-subtitle">
             <span class="typed-text"></span><span class="cursor">&nbsp;</span>
           </p>
           <p class="hero-description">
-            My journey is about shaping communities, not just constructing
-            buildings. It's a commitment to trust, long-term value, and
-            thoughtful development that stands the test of time.
+            "I Am In The Process Of Becoming The Best Version Of Myself"<br />
+            <small style="color: var(--secondary-color); font-size: 14px"
+              >My journey is about shaping communities, not just constructing
+              buildings. It's a commitment to trust, long-term value, and
+              thoughtful development that stands the test of time.</small
+            >
           </p>
           <div class="hero-buttons">
             <a href="#story" class="btn btn-primary">Discover My Story</a>
             <a href="#contact" class="btn btn-outline">Let's Connect</a>
+          </div>
+          <div
+            class="hero-contact-info"
+            style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap"
+          >
+            <a
+              href="tel:+91981747488"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--text-light);
+                font-size: 14px;
+              "
+            >
+              <i
+                class="fas fa-phone-alt"
+                style="color: var(--secondary-color)"
+              ></i>
+              +91 9811747488
+            </a>
+            <a
+              href="https://www.drpuneetaggarwal.com"
+              target="_blank"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--text-light);
+                font-size: 14px;
+              "
+            >
+              <i class="fas fa-globe" style="color: var(--secondary-color)"></i>
+              www.drpuneetaggarwal.com
+            </a>
           </div>
         </div>
         <div class="hero-image-wrapper">
@@ -1992,23 +2625,47 @@
         <div class="companies-grid">
           <div class="company-card" data-aos="flip-up">
             <div class="company-icon"><i class="fas fa-building"></i></div>
-            <h3>AKS Developers & Builders</h3>
-            <p>Managing Director</p>
+            <h3>Grand Sapphire Infratech</h3>
+            <p>Chairman & MD</p>
           </div>
 
           <div class="company-card" data-aos="flip-up" data-aos-delay="50">
             <div class="company-icon"><i class="fas fa-city"></i></div>
-            <h3>Shri Shyam Group</h3>
-            <p>Director</p>
+            <h3>Brokrs International</h3>
+            <p>Chairman & MD</p>
           </div>
 
           <div class="company-card" data-aos="flip-up" data-aos-delay="100">
             <div class="company-icon"><i class="fas fa-hard-hat"></i></div>
-            <h3>BPR Buildcon</h3>
-            <p>Director</p>
+            <h3>AKS Developers & Builders</h3>
+            <p>Chairman & MD</p>
           </div>
 
           <div class="company-card" data-aos="flip-up" data-aos-delay="150">
+            <div class="company-icon"><i class="fas fa-home"></i></div>
+            <h3>Shri Shyam Sharnam</h3>
+            <p>Chairman & MD</p>
+          </div>
+
+          <div class="company-card" data-aos="flip-up" data-aos-delay="200">
+            <div class="company-icon"><i class="fas fa-globe"></i></div>
+            <h3>Amar Nath Gian Chand</h3>
+            <p>Chairman & MD</p>
+          </div>
+
+          <div class="company-card" data-aos="flip-up" data-aos-delay="250">
+            <div class="company-icon"><i class="fas fa-handshake"></i></div>
+            <h3>ANGC International</h3>
+            <p>Chairman & MD</p>
+          </div>
+
+          <div class="company-card" data-aos="flip-up" data-aos-delay="300">
+            <div class="company-icon"><i class="fas fa-network-wired"></i></div>
+            <h3>ANGC Synapse</h3>
+            <p>Chairman & MD</p>
+          </div>
+
+          <div class="company-card" data-aos="flip-up" data-aos-delay="350">
             <div class="company-icon"><i class="fas fa-tree"></i></div>
             <h3>Desi Fasal</h3>
             <p>Promoter</p>
@@ -2016,6 +2673,390 @@
         </div>
       </div>
     </section>
+
+    <!-- 1. Offerings - Business Services (Redesigned) -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Offerings</span>
+          <h2 class="section-title">Business Services</h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card" data-aos="flip-up" style="--i: 1">
+            <div class="service-icon"><i class="fas fa-building"></i></div>
+            <h3>Real Estate</h3>
+            <p>Premium residential & commercial properties</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="50"
+            style="--i: 2"
+          >
+            <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+            <h3>Construction</h3>
+            <p>End-to-end construction solutions</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="100"
+            style="--i: 3"
+          >
+            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            <h3>Software</h3>
+            <p>Innovative tech solutions</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="150"
+            style="--i: 4"
+          >
+            <div class="service-icon">
+              <i class="fas fa-money-check-alt"></i>
+            </div>
+            <h3>Loan</h3>
+            <p>Financial & lending services</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="200"
+            style="--i: 5"
+          >
+            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Insurance</h3>
+            <p>Comprehensive coverage plans</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="250"
+            style="--i: 6"
+          >
+            <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Investment</h3>
+            <p>Strategic wealth management</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="300"
+            style="--i: 7"
+          >
+            <div class="service-icon"><i class="fas fa-plane"></i></div>
+            <h3>Travels</h3>
+            <p>Corporate & leisure travel</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="350"
+            style="--i: 8"
+          >
+            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3>Grocery</h3>
+            <p>Quality food & essentials</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="400"
+            style="--i: 9"
+          >
+            <div class="service-icon"><i class="fas fa-pills"></i></div>
+            <h3>Medicine</h3>
+            <p>Healthcare & pharmacy</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="450"
+            style="--i: 10"
+          >
+            <div class="service-icon"><i class="fas fa-users"></i></div>
+            <h3>Manpower</h3>
+            <p>Staffing & recruitment</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="500"
+            style="--i: 11"
+          >
+            <div class="service-icon"><i class="fas fa-globe"></i></div>
+            <h3>E-Commerce</h3>
+            <p>Digital marketplace</p>
+          </div>
+
+          <div
+            class="service-card"
+            data-aos="flip-up"
+            data-aos-delay="550"
+            style="--i: 12"
+          >
+            <div class="service-icon"><i class="fas fa-handshake"></i></div>
+            <h3>Consulting</h3>
+            <p>Business advisory</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Giving Back - Social Responsibilities (Redesigned) -->
+    <section id="social" class="social-responsibilities">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Giving Back</span>
+          <h2 class="section-title">Social Responsibilities</h2>
+        </div>
+
+        <div class="social-grid">
+          <!-- Founder & President -->
+          <div class="social-card founder" data-aos="zoom-in" style="--i: 1">
+            <div class="social-role-badge">Founder & President</div>
+            <h3>Shri Shyam Pariwar Foundation</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <div
+            class="social-card founder"
+            data-aos="zoom-in"
+            data-aos-delay="50"
+            style="--i: 2"
+          >
+            <div class="social-role-badge">Founder & President</div>
+            <h3>Shri Shyam Pariwar Trust</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <div
+            class="social-card founder"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            style="--i: 3"
+          >
+            <div class="social-role-badge">Founder & President</div>
+            <h3>Shri Shyam Bajrang Pariwar Sangh</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <!-- President -->
+          <div
+            class="social-card president"
+            data-aos="zoom-in"
+            data-aos-delay="150"
+            style="--i: 4"
+          >
+            <div class="social-role-badge">President</div>
+            <h3>Aggarwal Vaish Samaj</h3>
+            <p>Vidhan Sabha, Gurugram</p>
+          </div>
+
+          <!-- Vice President -->
+          <div
+            class="social-card vice-president"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            style="--i: 5"
+          >
+            <div class="social-role-badge">Vice President</div>
+            <h3>Aggarwal Vaish Maha Sammalen</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <!-- Patron -->
+          <div
+            class="social-card patron"
+            data-aos="zoom-in"
+            data-aos-delay="250"
+            style="--i: 6"
+          >
+            <div class="social-role-badge">Patron</div>
+            <h3>Baba Bhutnath Kawad Sewa Sangh</h3>
+            <p>Poata</p>
+          </div>
+
+          <div
+            class="social-card patron"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            style="--i: 7"
+          >
+            <div class="social-role-badge">Patron</div>
+            <h3>Sawariya ke Sewadar</h3>
+            <p>Khatu Shyam Ji</p>
+          </div>
+
+          <!-- Member -->
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="350"
+            style="--i: 8"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Aggarwal Sabha</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+            style="--i: 9"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Aggarwal Sabha</h3>
+            <p>Dwarka</p>
+          </div>
+
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="450"
+            style="--i: 10"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Bharat Vikas Parishad</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+            style="--i: 11"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Rotary Club of South City</h3>
+            <p>Gurugram</p>
+          </div>
+
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="550"
+            style="--i: 12"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Khatu Shyam Ji Jan Sewa Smiti</h3>
+            <p>Dwarka</p>
+          </div>
+
+          <div
+            class="social-card member"
+            data-aos="zoom-in"
+            data-aos-delay="600"
+            style="--i: 13"
+          >
+            <div class="social-role-badge">Member</div>
+            <h3>Shri Shyam Navodaya Sanskritik Sangh</h3>
+            <p>Palam</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Locations - Office Addresses (Redesigned) -->
+    <section id="offices" class="offices">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Locations</span>
+          <h2 class="section-title">Office Addresses</h2>
+        </div>
+
+        <div class="offices-grid">
+          <div class="office-card sales" data-aos="fade-up">
+            <div class="office-icon"><i class="fas fa-store"></i></div>
+            <h3>Sales Office</h3>
+            <p class="office-address">
+              5th Floor, WeWork DLF Two Horizon Centre,<br />
+              DLF Phase 5, Sector 43, Golf Course Road,<br />
+              <strong>Gurugram – 122002</strong>, Haryana
+            </p>
+          </div>
+
+          <div
+            class="office-card corporate"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="office-icon"><i class="fas fa-city"></i></div>
+            <h3>Corporate Office</h3>
+            <p class="office-address">
+              Plot No. 70, 1st Floor, Udyog Vihar Phase – 6,<br />
+              Sector 37, Near Hero Honda Chowk,<br />
+              <strong>Gurugram – 122004</strong>, Haryana
+            </p>
+          </div>
+
+          <div class="office-card site" data-aos="fade-up" data-aos-delay="200">
+            <div class="office-icon"><i class="fas fa-mountain"></i></div>
+            <h3>Behror Site Office</h3>
+            <p class="office-address">
+              133 KM Stone, Delhi Jaipur Highway,<br />
+              Village Jainpurwas – 301701,<br />
+              <strong>Distt. Kotputli Behror</strong>, Rajasthan
+            </p>
+          </div>
+        </div>
+
+        <!-- Additional contact info -->
+        <div
+          class="office-contact-note"
+          style="text-align: center; margin-top: 40px"
+          data-aos="fade-up"
+        >
+          <p style="color: var(--text-light)">
+            <i
+              class="fas fa-phone-alt"
+              style="color: var(--secondary-color); margin-right: 10px"
+            ></i>
+            For inquiries: +91 9811747488
+            <span style="margin: 0 15px; color: var(--border-color)">|</span>
+            <i
+              class="fas fa-envelope"
+              style="color: var(--secondary-color); margin-right: 10px"
+            ></i>
+            info@drpuneetaggarwal.com
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spiritual Message Section -->
+    <!-- <section class="spiritual-message">
+      <div class="container">
+        <div class="spiritual-content" data-aos="fade-up">
+          <div class="om-symbol">ॐ श्री श्याम देवाय नमः</div>
+          <h2>!! जय श्री श्याम !!</h2>
+          <blockquote class="spiritual-quote">
+            <p>मेरे जीवन के दो ही शब्द है</p>
+            <p>
+              एक है <strong>श्याम कृपा</strong> और दूसरी
+              <strong>श्याम इच्छा</strong>
+            </p>
+            <p class="spiritual-note">
+              यदि मन के अनुकूल तो श्याम कृपा<br />मन के अनुकूल ना हो तो श्याम
+              इच्छा
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </section> -->
 
     <!-- Timeline Section - Your Design -->
     <section id="timeline" class="timeline">
